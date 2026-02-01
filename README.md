@@ -1,2 +1,2 @@
 # Sonus
-Implementation of a Streaming App as a Distributed Sytem
+Implementation of an Audio Streaming App as a Distributed Sytem
