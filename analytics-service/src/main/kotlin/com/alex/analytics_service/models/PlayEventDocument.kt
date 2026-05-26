@@ -1,22 +1,14 @@
 package com.alex.analytics_service.models
 
 import org.springframework.data.annotation.Id
-import org.springframework.data.elasticsearch.annotations.Document
-import org.springframework.data.elasticsearch.annotations.Field
-import org.springframework.data.elasticsearch.annotations.FieldType
+import org.springframework.data.mongodb.core.mapping.Document
 import java.time.Instant
 
-@Document(indexName = "user-play-history")
+@Document(collection = "play_events")
 data class PlayEventDocument (
-    @Id
-    val id: String? = null,
-
-    @Field(type=FieldType.Keyword)
+    @Id val id: String? = null,
     val userId: String,
-
-    @Field(type= FieldType.Keyword)
     val songId: String,
-
-    @Field(type = FieldType.Date)
+    val artistId: String,
     val timestamp: Instant = Instant.now()
 )

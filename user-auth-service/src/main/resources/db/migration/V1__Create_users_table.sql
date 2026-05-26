@@ -7,3 +7,4 @@ CREATE TABLE users (
                        registration_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+

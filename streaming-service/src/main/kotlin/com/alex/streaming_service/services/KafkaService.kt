@@ -6,11 +6,11 @@ import reactor.core.publisher.Mono
 
 @Service
 class KafkaService(
-    private val kafkaTemplate: KafkaTemplate<String, String>
+    private val kafkaTemplate: KafkaTemplate<String, String>,
 ) {
     fun sendPlayEvent(userId: String, songId: String): Mono<Void> {
         val topic = "song-play-events"
-        val message = "$userId played $songId"
+        val message = """{"userId":"$userId", "songId":"$songId"}"""
 
         return Mono.fromFuture(kafkaTemplate.send(topic, userId, message))
             .then()

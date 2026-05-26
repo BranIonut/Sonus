@@ -18,45 +18,48 @@ class AudioRepository {
     @Autowired
     private lateinit var minioConfig: MinioConfig
 
-    fun getAudioMetadata(songId: String): Mono<Long> {
+    companion object {
+        private const val BUCKET = "songs"
+        private const val BUFFER_SIZE = 8192
+    }
+
+    // objectKey = "{artistId}/{albumId}/{songId}.m4a"
+    fun getAudioSize(objectKey: String): Mono<Long> {
         return Mono.fromCallable {
             minioConfig.minioClient().statObject(
                 StatObjectArgs.builder()
-                    .bucket("songs")
-                    .`object`("$songId.m4a")
+                    .bucket(BUCKET)
+                    .`object`(objectKey)
                     .build()
             ).size()
         }.subscribeOn(Schedulers.boundedElastic())
     }
 
-    fun getAudioFile(songId: String, offset: Long, length: Long): Flux<DataBuffer> {
-
-        return Flux.using<DataBuffer, io.minio.GetObjectResponse>(
+    fun getAudioStream(objectKey: String, offset: Long, length: Long): Flux<DataBuffer> {
+        return Flux.using(
             {
                 minioConfig.minioClient().getObject(
                     GetObjectArgs.builder()
-                        .bucket("songs")
-                        .`object`("$songId.m4a")
+                        .bucket(BUCKET)
+                        .`object`(objectKey)
                         .offset(offset)
                         .length(length)
                         .build()
                 )
             },
-            {inputStream ->
+            { inputStream ->
                 DataBufferUtils.readInputStream(
-                    {inputStream},
+                    { inputStream },
                     DefaultDataBufferFactory(),
-                    8192
+                    BUFFER_SIZE
                 )
             },
-            {inputStream ->
-                try {
-                    inputStream.close()
-                } catch (e: IOException) {
-                    //logging error
+            { inputStream ->
+                try { inputStream.close() }
+                catch (e: IOException) {
+                    //log error mai tarziu fac si aici...
                 }
             }
         ).subscribeOn(Schedulers.boundedElastic())
-
     }
 }

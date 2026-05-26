@@ -1,3 +1,8 @@
 package com.alex.dtos
 
-data class UpdateMetadataRequest(val username: String?, val email: String?, val password: String?)
+data class UpdateMetadataRequest(
+    val username: String?,
+    val name: String?,
+    val email: String?,
+    val password: String?
+)

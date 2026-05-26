@@ -1,8 +1,11 @@
 package com.alex.streaming_service.controllers
 
 import com.alex.streaming_service.DTOs.PlayEventRequest
-import com.alex.streaming_service.services.JwtService
 import com.alex.streaming_service.services.KafkaService
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -15,28 +18,30 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping(value = ["/api/analytics"])
-@CrossOrigin(origins = ["*"])
+@Tag(name="Analytics", description="Endpoints for registering streaming events")
 class AnalyticsController(
-    private val jwtService: JwtService,
     private val kafkaService: KafkaService
 ) {
+    @Operation(summary = "Record a play event")
+    @ApiResponses(
+        ApiResponse(responseCode = "200", description = "Play event"),
+        ApiResponse(responseCode = "400", description = "Bad request"),
+        ApiResponse(responseCode = "403", description = "Forbidden (user id mismatch)")
+    )
     @PostMapping("/play-event")
     fun recordPlayEvent(
-        @RequestHeader("Authorization") authHeader: String,
+        @RequestHeader("X-User-Id") authenticatedUserId: String,
         @RequestBody request: PlayEventRequest
     ): Mono<ResponseEntity<Void>> {
         if(request.listenDurationSeconds < 30) {
             return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build())
         }
 
-        val token = authHeader.removePrefix("Bearer ").trim()
-        if(!jwtService.isValid((token))) {
-            return Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build())
+        if(request.userId != authenticatedUserId) {
+            return Mono.just(ResponseEntity.status(HttpStatus.FORBIDDEN).build())
         }
 
-        val userId = jwtService.extractUserId(token)
-
-        return kafkaService.sendPlayEvent(userId, request.songId)
+        return kafkaService.sendPlayEvent(request.userId, request.songId)
             .then(Mono.just(ResponseEntity.accepted().build()))
     }
 }

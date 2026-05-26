@@ -1,6 +1,7 @@
 package com.alex.streaming_service.DTOs
 
-class PlayEventRequest(
+data class PlayEventRequest(
     val songId: String,
+    val userId: String,
     val listenDurationSeconds: Int
 )

@@ -13,12 +13,9 @@ class AudioService {
     @Autowired
     private lateinit var audioRepository: AudioRepository
 
-    fun getAudioSize(songId: String): Mono<Long> {
-        return audioRepository.getAudioMetadata(songId)
-    }
+    fun getAudioSize(objectKey: String): Mono<Long> =
+        audioRepository.getAudioSize(objectKey)
 
-    fun streamAudioFile(songId: String, start: Long, length: Long): Flux<DataBuffer> {
-
-        return audioRepository.getAudioFile(songId, start, length)
-    }
+    fun streamAudioFile(objectKey: String, start: Long, length: Long): Flux<DataBuffer> =
+        audioRepository.getAudioStream(objectKey, start, length)
 }

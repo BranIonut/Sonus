@@ -9,6 +9,9 @@ data class ArtistProfile(
     val userId: String,
     val stageName: String,
     val bio: String? = null,
+    val profilePictureURL: String? = null,
+    val genre: String? = null,
     val contactEmail: String? = null,
-    val socialLinks: Map<String, String>? = emptyMap()
+    val socialLinks: Map<String, String>? = emptyMap(),
+    val isVerified: Boolean = false
 )

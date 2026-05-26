@@ -5,5 +5,6 @@ import java.util.UUID
 data class UserResponse(
     val userId: UUID?,
     val username: String,
+    val name: String,
     val email: String
 )

@@ -1,7 +1,5 @@
 package com.alex.entities
 
-enum class Role {
-    USER,
-    ARTIST,
-    ADMIN
+enum class Role{
+    USER, ADMIN, ARTIST
 }
