@@ -1,0 +1,276 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+    --background: #ffffff;
+  --foreground: #000000;
+
+    --card: #ffffff;
+  --card-foreground: #000000;
+
+  --popover: rgba(255, 255, 255, 0.9);
+  --popover-foreground: #000000;
+
+    --primary: #fa243c;
+  --primary-foreground: #ffffff;
+
+    --secondary: #f2f2f6;
+  --secondary-foreground: #000000;
+
+    --muted: #f2f2f6;
+  --muted-foreground: #8e8e93;
+
+    --accent: #f2f2f6;
+  --accent-foreground: #000000;
+
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+
+    --border: #e5e5ea;
+  --input: #e5e5ea;
+  --ring: #fa243c;
+
+    --chart-1: #fa243c;
+  --chart-2: #ff9500;
+  --chart-3: #34c759;
+  --chart-4: #007aff;
+  --chart-5: #af52de;
+
+  --radius: 1rem;
+
+    --sidebar: #f2f2f6;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #fa243c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e5e5ea;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e5e5ea;
+  --sidebar-ring: #fa243c;
+}
+
+.dark {
+    --background: #000000;
+  --foreground: #ffffff;
+
+    --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #ffffff;
+
+  --popover: rgba(20, 20, 20, 0.8);
+  --popover-foreground: #ffffff;
+
+    --primary: #fa243c;
+  --primary-foreground: #ffffff;
+
+    --secondary: rgba(255, 255, 255, 0.1);
+  --secondary-foreground: #ffffff;
+
+    --muted: rgba(255, 255, 255, 0.25);
+  --muted-foreground: rgba(255, 255, 255, 0.6);
+
+    --accent: rgba(255, 255, 255, 0.1);
+  --accent-foreground: #ffffff;
+
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+
+    --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #fa243c;
+
+    --chart-1: #fa243c;
+  --chart-2: #ff9500;
+  --chart-3: #34c759;
+  --chart-4: #007aff;
+  --chart-5: #af52de;
+
+    --sidebar: #000000;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #fa243c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #fa243c;
+}
+
+@theme inline {
+  --font-sans: 'Ubuntu', sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: 20px;
+  }
+}
+
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-light-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-medium-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite alternate;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes wander {
+  0% {
+    transform: translate(0vw, 0vh) scale(1);
+  }
+
+  25% {
+    transform: translate(30vw, 20vh) scale(1.2);
+  }
+
+  50% {
+    transform: translate(-20vw, 30vh) scale(0.8);
+  }
+
+  75% {
+    transform: translate(-30vw, -10vh) scale(1.1);
+  }
+
+  100% {
+    transform: translate(0vw, 0vh) scale(1);
+  }
+}
+
+.animate-wander {
+  animation: wander 25s infinite ease-in-out alternate;
+}
+
+@keyframes scrollUp {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
+}
+
+@keyframes scrollDown {
+  0% { transform: translate3d(0, -50%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.animate-scroll-up {
+  animation: scrollUp 40s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.animate-scroll-down {
+  animation: scrollDown 40s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}

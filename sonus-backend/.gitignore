@@ -1,0 +1,9 @@
+**/.env
+.idea/
+elasticsearch-data/
+minio-data/
+mongodb-data/
+postgres-data/
+
+
+
