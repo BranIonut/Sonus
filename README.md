@@ -19,6 +19,72 @@ The platform is divided into a React-based frontend and a robust Kotlin Spring B
 - **Search & Analytics:** For complex search queries and statistics
 - **API Gateway:** Centralized entry point, routing, and security.
 
+### System Architecture Diagram
+
+```mermaid
+flowchart LR
+    Client[Client]
+    Gateway((API\nGateway))
+    
+    Auth((Auth\nMicroservice))
+    User((User\nMicroservice))
+    Catalog((Catalog\nMicroservice))
+    Library((Library\nMicroservice))
+    Upload((Upload Content\nMicroservice))
+    Streaming((Streaming\nMicroservice))
+    
+    DB_Auth[(PostgreSQL)]
+    DB_User[(PostgreSQL)]
+    DB_Catalog[(PostgreSQL)]
+    DB_Library[(PostgreSQL)]
+    DB_Upload[(PostgreSQL)]
+    
+    MinIO[(MinIO\nStorage)]
+    Kafka((Kafka))
+    
+    Analytics((Analytics\nMicroservice))
+    Notification((Notification\nMicroservice))
+    
+    MongoDB[(MongoDB)]
+    
+    %% Client & Gateway
+    Client <--> Gateway
+    
+    %% Gateway to Microservices
+    Gateway --> Auth
+    Gateway --> User
+    Gateway --> Catalog
+    Gateway --> Library
+    Gateway --> Upload
+    Gateway --> Streaming
+    
+    %% Microservices to their respective DBs
+    Auth --> DB_Auth
+    User --> DB_User
+    Catalog --> DB_Catalog
+    Library --> DB_Library
+    Upload --> DB_Upload
+    
+    %% Upload Content Service flows
+    Upload --> MinIO
+    Upload --> Kafka
+    
+    %% Streaming Service flows
+    Streaming --> MinIO
+    Streaming --> Kafka
+    
+    %% Kafka to downstream consumers
+    Kafka --> Analytics
+    Kafka --> Notification
+    
+    %% Analytics to DB
+    Analytics --> MongoDB
+    
+    %% Notification back to Client
+    Notification --> Client
+
+```
+
 ### Core Microservices
 
 1. **Streaming Service:** Serves audio files reactively. Fetches streams from MinIO and sends them to the client via `Flux<DataBuffer>` to ensure non-blocking memory usage. Publishes events to Kafka upon song plays.
