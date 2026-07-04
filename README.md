@@ -35,17 +35,17 @@ flowchart LR
     Upload((Upload Content\nMicroservice)):::plain
     Streaming((Streaming\nMicroservice)):::plain
     
-    DB_Auth[(🐘 PostgreSQL)]:::plain
-    DB_Artist[(🍃 MongoDB)]:::plain
-    DB_Catalog[(🍃 MongoDB)]:::plain
-    DB_Library[(🍃 MongoDB)]:::plain
-    DB_Upload[(🍃 MongoDB)]:::plain
+    DB_Auth[(PostgreSQL)]:::plain
+    DB_Artist[(MongoDB)]:::plain
+    DB_Catalog[(MongoDB)]:::plain
+    DB_Library[(MongoDB)]:::plain
+    DB_Upload[(MongoDB)]:::plain
     
     MinIO[(MinIO\nStorage)]:::plain
-    Kafka((⚛️ Kafka)):::plain
+    Kafka((Kafka)):::plain
     
     Analytics((Analytics\nMicroservice)):::plain
-    DB_Analytics[(🍃 MongoDB)]:::plain
+    DB_Analytics[(MongoDB)]:::plain
     
     %% Client & Gateway
     Client --> Gateway
