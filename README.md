@@ -1,6 +1,3 @@
-# Sonus
-Implementation of an Audio Streaming App as a Distributed Sytem
-=======
 # Sonus - Distributed Audio Streaming Platform
 
 ![Sonus Platform](https://img.shields.io/badge/Status-Active-success)
