@@ -16,7 +16,7 @@ The platform is divided into a React-based frontend and a robust Kotlin Spring B
 - **Databases:** PostgreSQL (Relational Data), MongoDB (NoSQL Data)
 - **Object Storage:** MinIO (S3-compatible) for storing audio chunks and images
 - **Message Broker:** Apache Kafka for asynchronous event-driven communication
-- **Search & Analytics:** Elasticsearch for complex queries and statistics
+- **Search & Analytics:** For complex search queries and statistics
 - **API Gateway:** Centralized entry point, routing, and security.
 
 ### Core Microservices
@@ -24,7 +24,7 @@ The platform is divided into a React-based frontend and a robust Kotlin Spring B
 1. **Streaming Service:** Serves audio files reactively. Fetches streams from MinIO and sends them to the client via `Flux<DataBuffer>` to ensure non-blocking memory usage. Publishes events to Kafka upon song plays.
 2. **User Auth & Management Service:** Handles JWT-based authentication, user roles (USER / ARTIST), and account management using Spring Security and PostgreSQL.
 3. **Upload Content Service / Artist Service:** Allows artists to publish new tracks and albums. Uploads raw files to MinIO, saves metadata in PostgreSQL, and produces Kafka events to notify subscribers.
-4. **Analytics Service:** Acts as a Kafka consumer for "song played" events. Indexes data in Elasticsearch/MongoDB to generate user preference reports (top artists, top genres) and recommendations.
+4. **Analytics Service:** Acts as a Kafka consumer for "song played" events. Indexes data in MongoDB to generate user preference reports (top artists, top genres) and recommendations.
 5. **Notification Service:** Decoupled service that listens to artist updates and sends real-time notifications to subscribed users.
 
 ---
