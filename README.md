@@ -163,7 +163,7 @@ sequenceDiagram
 
 ## Getting Started
 
-To run the Sonus backend locally, make sure you have Docker installed. The project provides a `docker-compose.yml` to spin up all necessary infrastructure (PostgreSQL, MongoDB, MinIO, Kafka, Elasticsearch).
+To run the Sonus backend locally, make sure you have Docker installed. The project provides a `docker-compose.yml` to spin up all necessary infrastructure (PostgreSQL, MongoDB, MinIO, Kafka).
 
 1. Clone the repository
 2. Run infrastructure containers:
