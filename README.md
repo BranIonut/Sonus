@@ -7,7 +7,7 @@
 
 Sonus is a scalable, microservices-based audio streaming application designed for high-performance and non-blocking streaming. The platform provides functionalities for users to stream music, for artists to upload content, and uses an event-driven architecture to compute analytics and recommendations in real-time.
 
-## 🏗 System Architecture & Technologies
+## System Architecture & Technologies
 
 The platform is divided into a React-based frontend and a robust Kotlin Spring Boot backend ecosystem:
 
@@ -29,7 +29,7 @@ The platform is divided into a React-based frontend and a robust Kotlin Spring B
 
 ---
 
-## 🔄 System Workflows
+## System Workflows
 
 The system's core functionalities are best illustrated through the following interaction diagrams:
 
@@ -161,7 +161,7 @@ sequenceDiagram
     API Gateway-->>Client: Render Recommended Content
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 To run the Sonus backend locally, make sure you have Docker installed. The project provides a `docker-compose.yml` to spin up all necessary infrastructure (PostgreSQL, MongoDB, MinIO, Kafka, Elasticsearch).
 
