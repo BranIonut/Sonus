@@ -23,65 +23,59 @@ The platform is divided into a React-based frontend and a robust Kotlin Spring B
 
 ```mermaid
 flowchart LR
-    Client[Client]
-    Gateway((API\nGateway))
+    classDef plain fill:#fff,stroke:#333,stroke-width:1px,color:#000;
     
-    Auth((Auth\nMicroservice))
-    User((User\nMicroservice))
-    Catalog((Catalog\nMicroservice))
-    Library((Library\nMicroservice))
-    Upload((Upload Content\nMicroservice))
-    Streaming((Streaming\nMicroservice))
+    Client[Client]:::plain
+    Gateway((Gateway\nMicroservice)):::plain
     
-    DB_Auth[(PostgreSQL)]
-    DB_User[(PostgreSQL)]
-    DB_Catalog[(PostgreSQL)]
-    DB_Library[(PostgreSQL)]
-    DB_Upload[(PostgreSQL)]
+    Auth((Auth\nMicroservice)):::plain
+    Artist((Artist\nMicroservice)):::plain
+    Catalog((Catalog\nMicroservice)):::plain
+    Library((Library\nMicroservice)):::plain
+    Upload((Upload Content\nMicroservice)):::plain
+    Streaming((Streaming\nMicroservice)):::plain
     
-    MinIO[(MinIO\nStorage)]
-    Kafka((Kafka))
+    DB_Auth[(🐘 PostgreSQL)]:::plain
+    DB_Artist[(🍃 MongoDB)]:::plain
+    DB_Catalog[(🍃 MongoDB)]:::plain
+    DB_Library[(🍃 MongoDB)]:::plain
+    DB_Upload[(🍃 MongoDB)]:::plain
     
-    Analytics((Analytics\nMicroservice))
-    Notification((Notification\nMicroservice))
+    MinIO[(MinIO\nStorage)]:::plain
+    Kafka((⚛️ Kafka)):::plain
     
-    MongoDB[(MongoDB)]
+    Analytics((Analytics\nMicroservice)):::plain
+    DB_Analytics[(🍃 MongoDB)]:::plain
     
     %% Client & Gateway
-    Client <--> Gateway
+    Client --> Gateway
     
     %% Gateway to Microservices
     Gateway --> Auth
-    Gateway --> User
+    Gateway --> Artist
     Gateway --> Catalog
     Gateway --> Library
     Gateway --> Upload
     Gateway --> Streaming
     
-    %% Microservices to their respective DBs
-    Auth --> DB_Auth
-    User --> DB_User
-    Catalog --> DB_Catalog
-    Library --> DB_Library
-    Upload --> DB_Upload
+    %% Microservices to Databases
+    Auth <--> DB_Auth
+    Artist <--> DB_Artist
+    Catalog <--> DB_Catalog
+    Library <--> DB_Library
+    Upload <--> DB_Upload
     
-    %% Upload Content Service flows
-    Upload --> MinIO
+    %% Storage & Messaging
+    Upload <--> MinIO
+    Streaming <--> MinIO
+    
     Upload --> Kafka
-    
-    %% Streaming Service flows
-    Streaming --> MinIO
     Streaming --> Kafka
     
-    %% Kafka to downstream consumers
+    %% Analytics & Loopback
     Kafka --> Analytics
-    Kafka --> Notification
-    
-    %% Analytics to DB
-    Analytics --> MongoDB
-    
-    %% Notification back to Client
-    Notification --> Client
+    Analytics <--> DB_Analytics
+    Analytics --> Gateway
 
 ```
 
