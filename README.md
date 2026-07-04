@@ -164,6 +164,21 @@ sequenceDiagram
     API Gateway-->>Client: Render Recommended Content
 ```
 
+## UI Preview
+### Welcome Page
+<img width="2875" height="1618" alt="Screenshot from 2026-06-24 10-46-19" src="https://github.com/user-attachments/assets/b4c61ee3-6155-4e5e-8934-965bbd9ddd74" />
+
+### The Explore Page - where user is able to search for songs, artists, albums, and even get recommendations based on their previous listening activity and liked content
+<img width="2875" height="1611" alt="Screenshot from 2026-06-24 15-08-32" src="https://github.com/user-attachments/assets/7a98cdba-6c13-4554-8df7-86d277e64981" />
+
+### Media Player - Extended Mode
+<img width="2875" height="1611" alt="Screenshot from 2026-06-24 15-09-22" src="https://github.com/user-attachments/assets/76ae6ab5-e903-4c32-96b5-c5b93b2ebf2f" />
+
+### Artist Dasboard for available statistics and profile editing
+<img width="2875" height="1611" alt="Screenshot from 2026-06-24 15-48-59" src="https://github.com/user-attachments/assets/30626e00-ca28-46bd-8dc1-24c204bb498d" />
+
+
+
 ## Getting Started
 
 To run the Sonus backend locally, make sure you have Docker installed. The project provides a `docker-compose.yml` to spin up all necessary infrastructure (PostgreSQL, MongoDB, MinIO, Kafka).
