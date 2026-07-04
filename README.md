@@ -179,4 +179,3 @@ To run the Sonus backend locally, make sure you have Docker installed. The proje
    ```
 
 *Note: For the frontend repository, navigate to `sonus-frontend` and use `npm install` and `npm run dev`.*
->>>>>>> staging
